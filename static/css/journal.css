@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400&display=swap');
+
 *,
 *::before,
 *::after {
@@ -244,6 +246,11 @@ h6 {
   display: block;
   margin: 0 0 1rem;
   text-align: right;
+}
+
+.post p {
+  font-family: 'Montserrat', sans-serif;
+  line-height: 1.9em;
 }
 
 .hljs {
