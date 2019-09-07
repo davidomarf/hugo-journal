@@ -78,13 +78,13 @@ blockquote cite {
 }
 
 a {
-  border-bottom: 1px solid currentColor;
+  box-shadow: 0px -.5em 0px #def7f5 inset;
+  transition: box-shadow 0.2s ease-in-out;
   color: currentColor;
   text-decoration: none;
 }
 a:hover {
-  border-bottom-color: currentColor;
-  color: #686868;
+  box-shadow: 0px -.7em 0px #cdf4f1 inset;
 }
 
 ol,
