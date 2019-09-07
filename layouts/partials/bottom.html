@@ -1,37 +1,47 @@
+<footer class="site-footer">
+  <hr style="border-top: 1px dotted lightgray;">
+  <span itemscope itemtype="http://schema.org/Person">
+    <link itemprop="url" href="{{ .Site.BaseURL }}">
+    <span itemprop="name">{{- .Site.Author.name | lower -}}, </span>
 
-      <footer class="site-footer">
-        <hr style="border-top: 1px dotted lightgray;">
-        <span itemscope itemtype="http://schema.org/Person">
-          <link itemprop="url" href="{{ .Site.BaseURL }}">
-          <span itemprop="name">{{- .Site.Author.name | lower -}}, </span>
+    {{ if isset .Site.Params "work" -}}
+    <span itemprop="jobTitle">{{- .Site.Params.work.jobTitle | lower -}}</span> at
+    <span itemprop="memberOf" itemscope itemtype="http://schema.org/Organization"><a itemprop="url" target="_blank"
+        href="{{ .Site.Params.work.companyUrl }}"><span itemprop="name">
+          {{- .Site.Params.work.company | lower -}}
+        </span></a></span>
+    {{- end -}}
 
-          {{ if isset .Site.Params "work" -}}
-          <span itemprop="jobTitle">{{- .Site.Params.work.jobTitle | lower -}}</span> at
-          <span itemprop="memberOf" itemscope itemtype="http://schema.org/Organization"><a itemprop="url" href="{{ .Site.Params.work.companyUrl }}"><span itemprop="name">
-            {{- .Site.Params.work.company | lower -}}
-          </span></a></span>
-          {{- end -}}
+    <br>
 
-          <br>
+    {{ if isset .Site.Params "githubusername" -}}
+    <a itemprop="sameAs" href="https://github.com/{{ .Site.Params.githubUsername }}" target="_blank"
+      title="GitHub">github</a>
+    {{- end }}
 
-          {{ if isset .Site.Params "githubusername" -}}
-          <a itemprop="sameAs" href="https://github.com/{{ .Site.Params.githubUsername }}" title="GitHub">github</a>
-          {{- end }}
+    {{ if isset .Site.Params "twitterusername" -}}
+    <a itemprop="sameAs" href="https://twitter.com/{{ .Site.Params.twitterUsername }}" target="_blank"
+      title="Twitter">twitter</a>
+    {{- end}}
 
-          {{ if isset .Site.Params "twitterusername" -}}
-          <a itemprop="sameAs" href="https://twitter.com/{{ .Site.Params.twitterUsername }}" title="Twitter">twitter</a>
-          {{- end}}
+    {{ if isset .Site.Params "gpg" -}}
+    <a itemprop="sameAs" href="{{ .Site.Params.gpg.link }}" target="_blank"
+      title="GPG {{ .Site.Params.gpg.key }} (fingerprint: {{ .Site.Params.gpg.fingerprint }})">gpg</a>
+    {{- end }}
 
-          {{ if isset .Site.Params "gpg" -}}
-          <a itemprop="sameAs" href="{{ .Site.Params.gpg.link }}" title="GPG {{ .Site.Params.gpg.key }} (fingerprint: {{ .Site.Params.gpg.fingerprint }})">gpg</a>
-          {{- end }}
-        </span>
+    {{ if isset .Site.Params "resume" -}}
+    <a itemprop="sameAs" href="{{ .Site.Params.resume | absURL }}" target="_blank" title="Resume">resume</a>
+    {{- end }}
+  </span>
 
-      </footer>
-    </div>
+</footer>
+</div>
 
-  <script src="{{ "js/highlight.pack.js" | relURL }}"></script>
-  <script>hljs.initHighlightingOnLoad();</script>
+<script src="{{ "js/highlight.pack.js" | relURL }}"></script>
+<script>
+  hljs.initHighlightingOnLoad();
+</script>
 
-  </body>
+</body>
+
 </html>
