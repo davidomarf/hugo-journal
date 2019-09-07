@@ -26,7 +26,8 @@
   <link rel="stylesheet" href="{{ "css/highlight.css" | relURL }}">
   <link rel="stylesheet" href="{{ "css/journal.css" | relURL }}">
   <link href="{{ "index.xml" | relURL }}" rel="alternate" type="application/rss+xml" title="{{ .Site.Title }}">
-
+  <link rel="icon" href="{{ "img/favicon.ico" | relURL }}">
+  
 </head>
 
 <body>
@@ -34,11 +35,11 @@
 
     {{ if .IsHome -}}
     <header class="site-header">
-      <h1>{{ .Site.Title }}</h1>
-      <p>{{ .Site.Params.tagline }}</p>
+      <h1>{{ .Site.Title | lower }}</h1>
+      <p>{{ .Site.Params.tagline | lower }}</p>
     </header>
     {{- else -}}
     <nav class="site-nav">
-      <a href="{{ .Site.BaseURL }}">Index</a>
+      <a href="{{ .Site.BaseURL }}">index</a>
     </nav>
     {{- end }}

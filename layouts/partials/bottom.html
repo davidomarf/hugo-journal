@@ -1,32 +1,32 @@
 
       <footer class="site-footer">
+        <hr style="border-top: 1px dotted lightgray;">
         <span itemscope itemtype="http://schema.org/Person">
           <link itemprop="url" href="{{ .Site.BaseURL }}">
-          <span itemprop="name">{{- .Site.Author.name -}}</span>
+          <span itemprop="name">{{- .Site.Author.name | lower -}}, </span>
 
-          {{ if isset .Site.Params "work" -}},
-          <span itemprop="jobTitle">{{- .Site.Params.work.jobTitle -}}</span> at
+          {{ if isset .Site.Params "work" -}}
+          <span itemprop="jobTitle">{{- .Site.Params.work.jobTitle | lower -}}</span> at
           <span itemprop="memberOf" itemscope itemtype="http://schema.org/Organization"><a itemprop="url" href="{{ .Site.Params.work.companyUrl }}"><span itemprop="name">
-            {{- .Site.Params.work.company -}}
+            {{- .Site.Params.work.company | lower -}}
           </span></a></span>
           {{- end -}}
 
           <br>
 
           {{ if isset .Site.Params "githubusername" -}}
-          <a itemprop="sameAs" href="https://github.com/{{ .Site.Params.githubUsername }}" title="GitHub">GH</a>
+          <a itemprop="sameAs" href="https://github.com/{{ .Site.Params.githubUsername }}" title="GitHub">github</a>
           {{- end }}
 
           {{ if isset .Site.Params "twitterusername" -}}
-          <a itemprop="sameAs" href="https://twitter.com/{{ .Site.Params.twitterUsername }}" title="Twitter">TW</a>
+          <a itemprop="sameAs" href="https://twitter.com/{{ .Site.Params.twitterUsername }}" title="Twitter">twitter</a>
           {{- end}}
 
           {{ if isset .Site.Params "gpg" -}}
-          <a itemprop="sameAs" href="{{ .Site.Params.gpg.link }}" title="GPG {{ .Site.Params.gpg.key }} (fingerprint: {{ .Site.Params.gpg.fingerprint }})">GPG</a>
+          <a itemprop="sameAs" href="{{ .Site.Params.gpg.link }}" title="GPG {{ .Site.Params.gpg.key }} (fingerprint: {{ .Site.Params.gpg.fingerprint }})">gpg</a>
           {{- end }}
         </span>
 
-        <!-- {{ hugo.BuildDate }} -->
       </footer>
     </div>
 
