@@ -3,7 +3,12 @@
   <article class="post">
     <header class="post-header">
       <h1 class="post-title">{{ .Title }}</h1>
+      <div style="display: flex; flex-direction: row; justify-content: space-between;">
+        <div>
+          <p style="padding-right: 3em;">{{ .Description | markdownify }}</p>
+        </div>
       <time class="post-date" datetime="{{ .Date.Format "2006-01-02 15:04:05 MST" }}">{{ .Date.Format "02 Jan 2006" | lower }}</time>
+    </div>
     </header>
 
     {{ .Content }}

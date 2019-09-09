@@ -44,4 +44,8 @@
 
 </body>
 
+{{ if (isset .Params "katex" ) -}}
+{{ partial "katex.html" . }}
+{{- end }}
+
 </html>
