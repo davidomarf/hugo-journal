@@ -1,8 +1,10 @@
 {{ partial "top.html" . }}
 
+  {{ .Content }}
+
   <article class="posts">
 
-    {{ range (site.Sections) -}}
+    {{ range  sort (site.Sections) -}}
     <section>
 
       <h2>{{ .Section }}</h2>

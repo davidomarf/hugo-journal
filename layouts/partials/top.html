@@ -36,7 +36,7 @@
     {{ if .IsHome -}}
     <header class="site-header">
       <h1>{{ .Site.Title | lower }}</h1>
-      <p>{{ .Site.Params.tagline | lower }}</p>
+      <p>{{ .Site.Params.tagline  | lower| markdownify }}</p>
     </header>
     {{- else -}}
     <nav class="site-nav">
