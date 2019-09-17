@@ -10,6 +10,18 @@
   <meta name="author" content="{{ .Site.Author.name }}">
   <meta property="og:url" content="{{ .Permalink }}">
 
+  {{ if .Site.Params.gtag -}}
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id={{ $.Site.Params.gtag }}"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', '{{ $.Site.Params.gtag }}');
+  </script>
+  {{- end}}
+
   {{ if .IsHome -}}
   <title>{{ .Site.Title }}</title>
   <meta property="og:title" content="{{ .Site.Title }}">
