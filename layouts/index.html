@@ -1,13 +1,14 @@
 {{ partial "top.html" . }}
 
   {{ .Content }}
-
+  </div>
+  
   <article class="posts">
 
     {{ range  sort (site.Sections) -}}
     <section>
 
-      <h2>{{ .Section }}</h2>
+      <h2 id="{{ .Section }}">{{ .Section }}</h2>
 
       {{ range .Pages.GroupByDate "2006" -}}
       <h5 class="year-divider"> {{ .Key }}</h5>

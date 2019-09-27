@@ -46,9 +46,10 @@
   <div class="container">
 
     {{ if .IsHome -}}
+    <div class="tall-header">
     <header class="site-header">
       <h1>{{ .Site.Title | lower }}</h1>
-      <p>{{ .Site.Params.tagline  | lower| markdownify }}</p>
+      <p>{{ .Site.Params.tagline | lower | markdownify }}</p>
     </header>
     {{- else -}}
     <nav class="site-nav">
