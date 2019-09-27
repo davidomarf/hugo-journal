@@ -284,7 +284,7 @@ h6 {
 }
 
 .tall-header {
-  min-height: 75vh;
+  min-height: 90vh;
   vertical-align: middle;
   display: flex;
   flex-direction: column;
