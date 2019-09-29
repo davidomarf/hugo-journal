@@ -1,74 +1,93 @@
-/* Tomorrow Night Eighties Theme */
-/* Original theme - https://github.com/chriskempson/tomorrow-theme */
-/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
-
-/* Tomorrow Comment */
-.hljs-comment,
-.hljs-quote {
-  color: #999999;
-}
-
-/* Tomorrow Red */
-.hljs-variable,
-.hljs-template-variable,
-.hljs-tag,
-.hljs-name,
-.hljs-selector-id,
-.hljs-selector-class,
-.hljs-regexp,
-.hljs-deletion {
-  color: #f2777a;
-}
-
-/* Tomorrow Orange */
-.hljs-number,
-.hljs-built_in,
-.hljs-builtin-name,
-.hljs-literal,
-.hljs-type,
-.hljs-params,
-.hljs-meta,
-.hljs-link {
-  color: #f99157;
-}
-
-/* Tomorrow Yellow */
-.hljs-attribute {
-  color: #ffcc66;
-}
-
-/* Tomorrow Green */
-.hljs-string,
-.hljs-symbol,
-.hljs-bullet,
-.hljs-addition {
-  color: #99cc99;
-}
-
-/* Tomorrow Blue */
-.hljs-title,
-.hljs-section {
-  color: #6699cc;
-}
-
-/* Tomorrow Purple */
-.hljs-keyword,
-.hljs-selector-tag {
-  color: #cc99cc;
-}
-
 .hljs {
   display: block;
   overflow-x: auto;
-  background: #2d2d2d;
-  color: #cccccc;
-  padding: 0.5em;
+  padding: .5em;
+  color: #333;
+  background: #f2f2f2
+}
+
+.hljs-comment,
+.hljs-quote {
+  color: #998;
+  font-style: italic
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-subst {
+  color: #333;
+  font-weight: bold
+}
+
+.hljs-number,
+.hljs-literal,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag .hljs-attr {
+  color: #008080
+}
+
+.hljs-string,
+.hljs-doctag {
+  color: #d14
+}
+
+.hljs-title,
+.hljs-section,
+.hljs-selector-id {
+  color: #900;
+  font-weight: bold
+}
+
+.hljs-subst {
+  font-weight: normal
+}
+
+.hljs-type,
+.hljs-class .hljs-title {
+  color: #458;
+  font-weight: bold
+}
+
+.hljs-tag,
+.hljs-name,
+.hljs-attribute {
+  color: #000080;
+  font-weight: normal
+}
+
+.hljs-regexp,
+.hljs-link {
+  color: #009926
+}
+
+.hljs-symbol,
+.hljs-bullet {
+  color: #990073
+}
+
+.hljs-built_in,
+.hljs-builtin-name {
+  color: #0086b3
+}
+
+.hljs-meta {
+  color: #999;
+  font-weight: bold
+}
+
+.hljs-deletion {
+  background: #fdd
+}
+
+.hljs-addition {
+  background: #dfd
 }
 
 .hljs-emphasis {
-  font-style: italic;
+  font-style: italic
 }
 
 .hljs-strong {
-  font-weight: bold;
+  font-weight: bold
 }
