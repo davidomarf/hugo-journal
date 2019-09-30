@@ -42,7 +42,7 @@ hr {
   height: 0;
   margin: 2rem 0;
   border: 0;
-  border-top: 1px solid #686868;
+  border-top: 5px dotted #e6e6e6;
 }
 
 figure .representation {
@@ -254,6 +254,10 @@ h6 {
 .post p {
   font-family: "Montserrat", sans-serif;
   line-height: 1.9em;
+}
+
+.post li, .post ol, .post ul{
+  font-family: "Montserrat";
 }
 
 .hljs {
