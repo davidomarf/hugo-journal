@@ -1,6 +1,9 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat:400&display=swap");
 @import url("https://cdn.jsdelivr.net/gh/tonsky/FiraCode@1.207/distr/fira_code.css");
 
+$font-color: #303030;
+$font-color-light: rgba($font-color, 0.4);
+
 *,
 *::before,
 *::after {
@@ -9,9 +12,10 @@
 
 html {
   background-color: #fbfbfb;
-  color: #303030;
+  color: $font-color;
   font-family: "Montserrat", serif;
   font-size: 1rem;
+  scroll-behavior: smooth;
 }
 @media screen and (min-width: 800px) {
   html {
@@ -119,7 +123,7 @@ abbr {
 kbd,
 code,
 pre {
-  font-family: 'Fira Code', '"Source Code Pro"', monospace;
+  font-family: "Fira Code", '"Source Code Pro"', monospace;
 }
 
 pre {
@@ -256,7 +260,9 @@ h6 {
   line-height: 1.9em;
 }
 
-.post li, .post ol, .post ul{
+.post li,
+a .post ol,
+.post ul {
   font-family: "Montserrat";
 }
 
@@ -295,4 +301,80 @@ h6 {
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+.post {
+  position: relative;
+  #TableOfContents {
+    position: absolute;
+    left: -40px;
+
+    height: 100%;
+    width: calc((100vw - 38rem) / 2 - 20px);
+    max-width: 250px;
+
+    transform: translate(-100%);
+
+    &:hover {
+      ul li {
+        color: $font-color-light;
+      }
+      ul li.active {
+        color: $font-color;
+      }
+    }
+
+    ul {
+      counter-reset: item;
+      max-height: calc(100vh - 100px);
+      overflow: auto;
+      padding-top: 6px;
+      position: -webkit-sticky;
+      position: sticky;
+      top: 100px;
+      list-style-position: outside !important;
+      margin: 0;
+
+      li {
+        margin-left: 20px;
+
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        counter-increment: li;
+
+        font-family: monospace;
+
+        color: transparent;
+        transition: color 250ms ease-in-out;
+
+        a {
+          text-decoration: none;
+          box-shadow: none;
+        }
+
+        &::before {
+          content: counter(li);
+
+          position: absolute;
+          left: 0px;
+
+          text-align: right;
+
+          color: $font-color-light;
+          transition: color 250ms ease-in-out;
+        }
+
+        &:hover,
+        &:hover::before {
+          color: $font-color;
+        }
+
+        &.active::before {
+          color: $font-color;
+        }
+      }
+    }
+  }
 }

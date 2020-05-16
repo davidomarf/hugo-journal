@@ -36,13 +36,19 @@
 
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Code+Pro|Arvo:400,700">
   <link rel="stylesheet" href="{{ "css/highlight.css" | relURL }}">
-  <link rel="stylesheet" href="{{ "css/journal.css" | relURL }}">
+
+  {{ $cssOpts := (dict "targetPath" "css/style.css" "outputStyle" "compressed" "enableSourceMap" true) }}
+  {{ $styles := resources.Get "scss/journal.scss" | toCSS $cssOpts }}
+  <link rel="stylesheet" href="{{ $styles.Permalink }}">
+
+  
   <link href="{{ "index.xml" | relURL }}" rel="alternate" type="application/rss+xml" title="{{ .Site.Title }}">
   <link rel="icon" href="{{ "img/favicon.ico" | relURL }}">
   
 </head>
 
 <body>
+
   <div class="container">
 
     {{ if .IsHome -}}
