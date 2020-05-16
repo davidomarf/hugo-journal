@@ -41,12 +41,17 @@
 <script>
   hljs.initHighlightingOnLoad();
 </script>
-<script src="{{ "js/sidebar.js" | relURL }}"></script>
+
+{{ if .Params.toc -}}
+  {{ $js := resources.Get "js/sidebar.js" }}
+  {{ $script := $js | resources.Minify }}
+  <script src="{{ $script.RelPermalink }}"></script>
+{{- end }}
 
 </body>
 
 {{ if (isset .Params "katex" ) -}}
-{{ partial "katex.html" . }}
+  {{ partial "katex.html" . }}
 {{- end }}
 
 </html>

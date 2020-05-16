@@ -2,7 +2,7 @@
 @import url("https://cdn.jsdelivr.net/gh/tonsky/FiraCode@1.207/distr/fira_code.css");
 
 $font-color: #303030;
-$font-color-light: rgba($font-color, 0.4);
+$font-color-light: rgba($font-color, 0.5);
 
 *,
 *::before,
@@ -303,24 +303,37 @@ a .post ol,
   justify-content: center;
 }
 
+@media only screen and (max-width: 1100px){
+  #TableOfContents{
+    display: none;
+  }
+}
 .post {
   position: relative;
+
   #TableOfContents {
     position: absolute;
     left: -40px;
-
     height: 100%;
-    width: calc((100vw - 38rem) / 2 - 20px);
+    width: calc((100vw - 38rem) / 2 - 50px);
     max-width: 250px;
-
+    margin-left: 10px;
     transform: translate(-100%);
+    &.is-content-hidden {
+      ul li {
+        color: transparent;
+      }
+    }
 
     &:hover {
       ul li {
         color: $font-color-light;
-      }
-      ul li.active {
-        color: $font-color;
+        &.active {
+          color: $font-color !important;
+        }
+        &::hover a {
+          text-decoration: underline;
+        }
       }
     }
 
@@ -331,7 +344,7 @@ a .post ol,
       padding-top: 6px;
       position: -webkit-sticky;
       position: sticky;
-      top: 100px;
+      top: 30px;
       list-style-position: outside !important;
       margin: 0;
 
@@ -346,8 +359,8 @@ a .post ol,
 
         font-family: monospace;
 
-        color: transparent;
-        transition: color 250ms ease-in-out;
+        color: $font-color-light;
+        transition: color 350ms ease-in-out;
 
         a {
           text-decoration: none;
@@ -363,7 +376,7 @@ a .post ol,
           text-align: right;
 
           color: $font-color-light;
-          transition: color 250ms ease-in-out;
+          transition: color 350ms ease-in-out;
         }
 
         &:hover,

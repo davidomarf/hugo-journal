@@ -7,7 +7,7 @@
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="author" content="{{ .Site.Author.name }}">
+  <meta name="author" content="{{ .Site.Author.name }} {{ .Site.Author.lastname }}">
   <meta property="og:url" content="{{ .Permalink }}">
 
   {{ if .Site.Params.gtag -}}
@@ -28,10 +28,10 @@
   <meta property="og:type" content="website">
   <meta name="description" content="{{ .Site.Params.description }}">
   {{- else -}}
-  <title>{{ .Title }} - {{ .Site.Title }}</title>
-  <meta property="og:title" content="{{ .Title }} - {{ .Site.Title }}">
+  <title>{{ .Title }}</title>
+  <meta property="og:title" content="{{ .Title }}">
   <meta property="og:type" content="article">
-  <meta name="description" content="{{ .Description }}">
+  <meta name="description" content="{{ .Params.metaDescription }}">
   {{- end }}
 
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Code+Pro|Arvo:400,700">
@@ -39,7 +39,8 @@
 
   {{ $cssOpts := (dict "targetPath" "css/style.css" "outputStyle" "compressed" "enableSourceMap" true) }}
   {{ $styles := resources.Get "scss/journal.scss" | toCSS $cssOpts }}
-  <link rel="stylesheet" href="{{ $styles.Permalink }}">
+  
+  <link rel="stylesheet" href="{{ $styles.RelPermalink }}">
 
   
   <link href="{{ "index.xml" | relURL }}" rel="alternate" type="application/rss+xml" title="{{ .Site.Title }}">
