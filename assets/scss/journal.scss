@@ -205,6 +205,9 @@ h6 {
 .site-footer {
   margin: 3rem 0 0;
   font-size: 0.8125rem;
+  hr {
+    border-top: 1px dotted lightgray;
+  }
 }
 .site-footer [itemprop="sameAs"] + [itemprop="sameAs"] {
   margin-left: 0.4rem;
@@ -243,6 +246,14 @@ h6 {
 
 .post .post-header {
   margin-bottom: 3rem;
+  .project-meta-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    p {
+      padding-right: 3em;
+    }
+  }
 }
 
 .post .post-date {
@@ -395,11 +406,10 @@ div.list-container {
     flex-direction: row;
     margin: 2rem 0;
 
-    &:hover  {
-      .post-excerpt{
+    &:hover {
+      .post-excerpt {
         color: $font-color !important;
       }
-      
     }
 
     &-meta {
@@ -431,7 +441,7 @@ div.list-container {
         &-excerpt {
           font-size: 0.8rem;
           transition: color 200ms ease-in-out;
-          &.arrow{
+          &.arrow {
             display: none;
             font-family: Fira Code;
           }
