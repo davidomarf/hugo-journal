@@ -7,7 +7,8 @@
     {{ if isset .Site.Params "work" -}}
     <span itemprop="jobTitle">{{- .Site.Params.work.jobTitle | lower -}}</span> at
     <span itemprop="memberOf" itemscope itemtype="http://schema.org/Organization"><a itemprop="url" target="_blank"
-        href="{{ .Site.Params.work.companyUrl }}"><span itemprop="name">
+      rel="noopener noreferrer"  
+      href="{{ .Site.Params.work.companyUrl }}"><span itemprop="name">
           {{- .Site.Params.work.company | lower -}}
         </span></a></span>
     {{- end -}}
@@ -16,21 +17,26 @@
 
     {{ if isset .Site.Params "githubusername" -}}
     <a itemprop="sameAs" href="https://github.com/{{ .Site.Params.githubUsername }}" target="_blank"
+      rel="noopener noreferrer"  
       title="GitHub">github</a>
     {{- end }}
 
     {{ if isset .Site.Params "twitterusername" -}}
     <a itemprop="sameAs" href="https://twitter.com/{{ .Site.Params.twitterUsername }}" target="_blank"
+      rel="noopener noreferrer"  
       title="Twitter">twitter</a>
     {{- end}}
 
     {{ if isset .Site.Params "gpg" -}}
     <a itemprop="sameAs" href="{{ .Site.Params.gpg.link }}" target="_blank"
+      rel="noopener noreferrer"  
       title="GPG {{ .Site.Params.gpg.key }} (fingerprint: {{ .Site.Params.gpg.fingerprint }})">gpg</a>
     {{- end }}
 
     {{ if isset .Site.Params "resume" -}}
-    <a itemprop="sameAs" href="{{ .Site.Params.resume | absURL }}" target="_blank" title="Resume">resume</a>
+    <a itemprop="sameAs" href="{{ .Site.Params.resume | absURL }}" target="_blank" 
+    rel="noopener noreferrer"  
+    title="Resume">resume</a>
     {{- end }}
   </span>
 
