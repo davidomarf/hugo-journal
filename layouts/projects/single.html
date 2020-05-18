@@ -9,8 +9,10 @@
       </div>
     </header>
 
-    {{ .TableOfContents }}  
-
+    {{ if .Params.toc -}}
+      {{ .TableOfContents }}
+    {{- end }}
+    
     {{ .Content }}
 
   </article>
