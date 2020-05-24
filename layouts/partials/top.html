@@ -31,7 +31,7 @@
   <title>{{ .Title }}</title>
   <meta property="og:title" content="{{ .Title }}">
   <meta property="og:type" content="article">
-  <meta name="description" content="{{ .Params.metaDescription }}">
+  <meta name="description" content="{{ or .Params.description .Params.excerpt }}">
   {{- end }}
 
   {{ if .Params.code -}}
