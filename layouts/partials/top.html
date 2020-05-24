@@ -27,10 +27,12 @@
   <meta property="og:title" content="{{ .Site.Title }}">
   <meta property="og:type" content="website">
   <meta name="description" content="{{ .Site.Params.description }}">
+  <meta property ="og:image" content="https://og-image.now.sh/{{ .Site.Title }}">
   {{- else -}}
   <title>{{ .Title }}</title>
   <meta property="og:title" content="{{ .Title }}">
   <meta property="og:type" content="article">
+  <meta property ="og:image" content="https://og-image.now.sh/{{ .Title }}">
   <meta name="description" content="{{ or .Params.description .Params.excerpt }}">
   {{- end }}
 
