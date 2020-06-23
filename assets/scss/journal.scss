@@ -566,6 +566,7 @@ div.list-container {
       }
       &-repo {
         display: flex;
+        flex-wrap: wrap;
         flex-direction: row;
 
         align-items: center;
@@ -598,16 +599,14 @@ div.list-container {
       }
       &-title {
         font-weight: 700;
-        position: relative;
         span.item-wip {
+          margin-left: 1em;
           padding: 0.5em 1em;
           font-weight: normal;
           font-family: monospace;
           font-size: 0.8em;
           background: #eee;
           border-radius: 5px;
-          position: absolute;
-          transform: translateX(calc(-100% - 10px));
         }
       }
       &-company {
@@ -618,6 +617,7 @@ div.list-container {
       }
       &-stack {
         display: flex;
+        flex-wrap: wrap;
         font-size: 0.8em;
         font-weight: 700;
         &-item:not(:first-child) {

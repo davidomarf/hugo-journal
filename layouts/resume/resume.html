@@ -68,10 +68,10 @@
       <div class="item-header">
         <div class="main-info">
           <div class="item-title">
+            {{- $project.name | markdownify -}} 
             {{ if $project.wip -}}
               <span class="item-wip">WIP</span>
             {{- end }}
-            {{- $project.name | markdownify -}} 
           </div>
           <div class="item-company spaced">
             {{- $project.description | markdownify -}}
