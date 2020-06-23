@@ -52,8 +52,7 @@
 
 <body>
 
-  <div class="container">
-
+  <div class="container {{ if (eq .RelPermalink "/resume/") -}}resume{{- end }}">
     {{ if .IsHome -}}
     <div class="tall-header">
     <header class="site-header">
@@ -62,6 +61,9 @@
     </header>
     {{- else -}}
     <nav class="site-nav">
-      <a href="{{ .Site.BaseURL }}">index</a>
+      <a href="{{ .Site.BaseURL }}" id="index-link">index</a>
+      {{ if (eq .RelPermalink "/resume/") -}}
+      <a href="/resume.pdf" id="pdf-link">get pdf</a>
+      {{- end }}
     </nav>
     {{- end }}

@@ -1,0 +1,112 @@
+{{ partial "top.html" . }}
+<h1 class="name">
+  <span class="first-name">
+    {{- .Site.Author.name -}}
+  </span>
+
+  <span class="last-name">
+    {{- .Site.Author.lastname -}}
+  </span>
+</h1>
+<h2 class="position">
+  {{- .Params.position -}}
+</h2>
+
+<div class="excerpt">
+  {{- .Params.excerpt | markdownify -}}
+</div>
+
+<div class="resume-section">
+  <h3 class="resume-section-title">Experience</h3>
+  <div class="resume-section-content">
+    {{ range $job := .Params.Experience -}}
+    <div class="item-container">
+      <div class="item-header">
+        <div class="main-info">
+          <div class="item-title">
+            {{- $job.position -}}
+          </div>
+          <div class="item-company spaced">
+            {{- $job.company | markdownify -}}
+          </div>
+          <div class="item-stack spaced">
+            {{ range $tech := $job.stack -}}
+            <div class="item-stack-item">
+              {{- $tech -}}
+            </div>
+            {{- end }}
+          </div>
+        </div>
+        <div class="item-meta">
+          <div>
+            {{- $job.period -}}
+          </div>
+          <div>
+            {{- $job.location -}}
+          </div>
+        </div>
+      </div>
+      <div class="item-details spaced">
+        <ul>
+          {{ range $job.achievements -}}
+          <li>
+            {{ . | markdownify }}
+          </li>
+          {{- end }}
+        </ul>
+      </div>
+      {{- end }}
+    </div>
+  </div>
+</div>
+
+<div class="resume-section">
+  <h3 class="resume-section-title">Projects</h3>
+  <div class="resume-section-content">
+    {{ range $project := .Params.Projects -}}
+    <div class="item-container">
+      <div class="item-header">
+        <div class="main-info">
+          <div class="item-title">
+            {{ if $project.wip -}}
+              <span class="item-wip">WIP</span>
+            {{- end }}
+            {{- $project.name | markdownify -}} 
+          </div>
+          <div class="item-company spaced">
+            {{- $project.description | markdownify -}}
+          </div>
+          <div class="item-stack spaced">
+            {{ range $tech := $project.stack -}}
+            <div class="item-stack-item">
+              {{- $tech -}}
+            </div>
+            {{- end }}
+          </div>
+          <div class="item-repo spaced" id="{{- $project.repo -}}">
+            {{ partial "repo-details.html" }}
+          </div>
+        </div>
+      </div>
+      <div class="item-details spaced">
+        <ul>
+          {{ range $project.achievements -}}
+          <li>
+            {{ . | markdownify }}
+          </li>
+          {{- end }}
+        </ul>
+      </div>
+    </div>
+    {{- end }}
+  </div>
+</div>
+
+<div class="resume-section">
+  <h3 class="resume-section-title">Extra</h3>
+  <div class="resume-section-content">
+    {{ .Params.extra | markdownify}}
+</div>
+</div>
+
+{{ partial "bottom.html" . }}

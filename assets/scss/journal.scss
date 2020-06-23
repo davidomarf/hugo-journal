@@ -220,11 +220,23 @@ h6 {
   margin-bottom: 0.5rem;
 }
 
-.site-nav a::before {
-  content: "\2190";
-  margin-right: 0.25rem;
-}
+.site-nav {
+  display: flex;
+  a {
+    &#pdf-link {
+      margin-left: auto;
+      &::before {
+        content: "\2193";
+        margin-right: 0.25rem;
+      }
+    }
 
+    &#index-link::before {
+      content: "\2190";
+      margin-right: 0.25rem;
+    }
+  }
+}
 .site-footer {
   margin: 3rem 0 0;
   font-size: 0.8125rem;
@@ -470,7 +482,155 @@ div.list-container {
           }
         }
       }
-      .reading-time {
+    }
+  }
+}
+
+.container.resume {
+  width: 80%;
+  max-width: 40rem;
+  h1.name {
+    margin-bottom: 0;
+    text-align: right;
+    span.last-name {
+      font-weight: 400;
+    }
+    span.first-name {
+      font-weight: 700;
+    }
+  }
+  h2.position {
+    text-align: right;
+    font-size: 1rem;
+    font-weight: 400;
+  }
+  div.excerpt {
+    padding: 2em 1em;
+    font-size: 0.9em;
+    border-radius: 5px;
+    *:last-child {
+      margin-bottom: 0;
+    }
+  }
+  .resume-section {
+    margin-top: 2em;
+    &-title {
+      margin-bottom: 2rem;
+
+      display: flex;
+      align-items: center;
+
+      text-transform: uppercase;
+      font-size: 1.2rem;
+      color: $font-color-toc;
+
+      &::before,
+      &::after {
+        content: "";
+        border-top: 1px dashed lightgray;
+        flex-grow: 1;
+      }
+
+      &::before {
+        margin: 0 10px 0 0px;
+        max-width: 50px;
+      }
+
+      &::after {
+        content: "";
+        margin: 0 0px 0 10px;
+      }
+    }
+
+    div.item {
+      &-header {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        .main-info {
+          div.spaced {
+            margin-top: 0.5em;
+          }
+        }
+      }
+      &-meta {
+        margin-left: auto;
+
+        display: flex;
+        flex-direction: column;
+
+        text-align: right;
+        font-size: 0.75em;
+        font-style: italic;
+        color: $font-color-light;
+      }
+      &-repo {
+        display: flex;
+        flex-direction: row;
+
+        align-items: center;
+
+        font-size: 0.75em;
+        color: $font-color-light;
+
+        .repo-stat {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          p {
+            margin: 0;
+            margin-left: 1em;
+          }
+          a {
+            display: flex;
+            align-items: center;
+
+            box-shadow: none;
+          }
+          &:not(:first-child)::before {
+            content: "·";
+            margin: 0 10px;
+          }
+        }
+        svg {
+          fill: $font-color-light;
+        }
+      }
+      &-title {
+        font-weight: 700;
+        position: relative;
+        span.item-wip {
+          padding: 0.5em 1em;
+          font-weight: normal;
+          font-family: monospace;
+          font-size: 0.8em;
+          background: #eee;
+          border-radius: 5px;
+          position: absolute;
+          transform: translateX(calc(-100% - 10px));
+        }
+      }
+      &-company {
+        text-transform: uppercase;
+        font-size: 0.8em;
+        font-weight: 700;
+        color: $font-color-light;
+      }
+      &-stack {
+        display: flex;
+        font-size: 0.8em;
+        font-weight: 700;
+        &-item:not(:first-child) {
+          &::before {
+            content: "·";
+            margin: 0 10px;
+          }
+        }
+      }
+      &-details {
+        margin-top: 1rem;
+        color: $font-color;
+        font-size: 0.9rem;
       }
     }
   }

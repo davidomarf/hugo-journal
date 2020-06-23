@@ -62,4 +62,10 @@
   {{ partial "katex.html" . }}
 {{- end }}
 
+{{ if (eq .RelPermalink "/resume/") -}}
+  {{ $js := resources.Get "js/gh.js" }}
+  {{ $script := $js }}
+  <script src="{{ $script.RelPermalink }}"></script>
+{{- end }}
+
 </html>
