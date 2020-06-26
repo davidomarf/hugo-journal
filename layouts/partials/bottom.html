@@ -43,13 +43,6 @@
 </footer>
 </div>
 
-{{ if .Params.code -}}
-  <script src="{{ "js/highlight.pack.js" | relURL }}"></script>
-  <script>
-    hljs.initHighlightingOnLoad();
-  </script>
-{{- end }}
-
 {{ if .Params.toc -}}
   {{ $js := resources.Get "js/sidebar.js" }}
   {{ $script := $js | resources.Minify }}
