@@ -27,12 +27,12 @@
   <meta property="og:title" content="{{ .Site.Title }}">
   <meta property="og:type" content="website">
   <meta name="description" property="og:description" content="{{ .Site.Params.description }}">
-  <meta property ="og:image" content="https://og-image.now.sh/{{ .Site.Title }}">
+  <meta property ="og:image" content="https://og.davidomarf.vercel.app/{{ replace .Site.Title " " "%20" }}">
   {{- else -}}
   <title>{{ .Title }}</title>
   <meta property="og:title" content="{{ .Title }}">
   <meta property="og:type" content="article">
-  <meta property ="og:image" content="https://og.davidomarf.vercel.app/{{ .Title }}">
+  <meta property ="og:image" content="https://og.davidomarf.vercel.app/{{ replace .Title " " "%20" }}">
   <meta name="description" property="og:description" content="{{ or .Params.description .Params.excerpt | markdownify }}">
   {{- end }}
 
