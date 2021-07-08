@@ -147,7 +147,7 @@ abbr {
 kbd,
 code,
 pre {
-  font-family: "Fira Code", '"Source Code Pro"', monospace;
+  font-family: "Fira Code", "Source Code Pro", monospace;
 }
 
 pre {
@@ -400,7 +400,7 @@ a .post ol,
 
         counter-increment: li;
 
-        font-family: monospace;
+        font-family: "Fira Code", "Source Code Pro", monospace;
 
         color: $font-color-toc;
         transition: color 350ms ease-in-out;
@@ -603,7 +603,7 @@ div.list-container {
           margin-left: 1em;
           padding: 0.5em 1em;
           font-weight: normal;
-          font-family: monospace;
+          font-family: "Fira Code", "Source Code Pro", monospace;
           font-size: 0.8em;
           background: #eee;
           border-radius: 5px;
