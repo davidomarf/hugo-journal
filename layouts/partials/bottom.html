@@ -49,6 +49,10 @@
   <script src="{{ $script.RelPermalink }}"></script>
 {{- end }}
 
+{{ $p5 := resources.Get "js/p5.js" }}
+{{ $script := $p5 | resources.Minify }}
+<script src="{{ $script.RelPermalink }}"></script>
+
 </body>
 
 {{ if (isset .Params "katex" ) -}}
