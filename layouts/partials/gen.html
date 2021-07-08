@@ -1,32 +1,67 @@
 <script>
+  const vw = Math.max(
+    document.documentElement.clientWidth || 0,
+    window.innerWidth || 0
+  );
+  const vh = Math.max(
+    document.documentElement.clientHeight || 0,
+    window.innerHeight || 0
+  );
+
+  let accentProbability = 0.1;
+  let circleProbability = 0.5;
+  let skipProbability = 0.5;
+  let nextSeed = 99;
+
   const colors = [[190, 84, 55], "black"];
 
   let canvasElement;
 
   function draw() {
     clear();
+    randomSeed(nextSeed);
     divide(0, 0, width);
   }
 
   function setup() {
     createCanvas(160, 160).parent("p5-container");
-    canvasElement = document.getElementById("p5-container");
+    canvasElement = document
+      .getElementById("p5-container")
+      .getElementsByTagName("canvas")[0];
     colorMode(HSB);
     noStroke();
     noLoop();
-    
+    rectMode(CENTER);
   }
 
   function fillSquare(x, y, size, i = 0) {
-    const r = size * 0.75;
-    const color = random() > 0.92 ? [20, 84, 80] : random(colors);
+    const r = size * 1;
+    const randomNumbers = [...Array(10)].map((e) => random());
+
+    const secondRandom = random(colors);
+    const thirdRandom = random(colors);
+    const typeRandom = random([0, 1, 2, 3]);
+    let color =
+      randomNumbers[0] < accentProbability ? [20, 84, 80] : secondRandom;
     fill(color);
 
-    if (random() > 0.5 && i < 2) {
-      divide(x, y, size, i + 1);
-    } else if (random() > 0.4) {
-      rect(x, y, r, r);
+    if (randomNumbers[8] > skipProbability) {
+      noFill();
     }
+    if (randomNumbers[6] > 0.8 && i > 0) {
+      return;
+    }
+    if (randomNumbers[1] > 0.5 && i <= 2) {
+      divide(x, y, size, i + 1);
+    } else if (randomNumbers[2] > circleProbability) {
+      rect(x + r / 2, y + r / 2, r, r);
+    } else {
+      circle(x + r / 2, y + r / 2, r, r);
+    }
+  }
+
+  function getDistance(ax, ay, bx, by) {
+    return Math.sqrt((ax - bx) ** 2 + (ay - by) ** 2);
   }
 
   function divide(x, y, size, i = 0) {
@@ -42,6 +77,27 @@
     if (canvasElement.getBoundingClientRect().bottom > 0) {
       draw();
     }
+  }
+
+  function mouseMoved({ clientX, clientY }) {
+    const px = clientX / vw;
+    const py = clientY / vh;
+    skipProbability = 0.1 + 0.3 * px;
+    circleProbability = py;
+
+    const { left, right, bottom, top } = canvasElement.getBoundingClientRect();
+
+    const center = { x: (left + right) / 2, y: (bottom + top) / 2 };
+    const dist = getDistance(center.x, center.y, clientX, clientY);
+    const maxLength = 0.8 * getDistance(center.x, center.y, vw, center.y);
+    skipProbability = Math.max(0, (dist - 75) / maxLength);
+    draw();
+  }
+
+  function mouseClicked() {
+    randomSeed();
+    nextSeed = random(0, 1000000);
+    draw();
   }
 </script>
 <div id="p5-container"></div>
