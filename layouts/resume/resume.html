@@ -29,6 +29,9 @@
           <div class="item-company spaced">
             {{- $job.company | markdownify -}}
           </div>
+          <div class="margin-annotation">
+            {{ $job.annotation | markdownify }}
+          </div>
           <div class="item-stack spaced">
             {{ range $tech := $job.stack -}}
             <div class="item-stack-item">
@@ -48,10 +51,25 @@
       </div>
       <div class="item-details spaced">
         <ul>
-          {{ range $job.achievements -}}
+          {{ range $achievement := $job.achievements -}}
+          {{ $type := (printf "%T" .) }}
+          {{ if eq $type "string" }}
           <li>
-            {{ . | markdownify }}
+            {{ $achievement | markdownify }}
           </li>
+          {{ end }}
+          {{ if eq $type "[]interface {}" }}
+          <li>
+            {{ index $achievement 0 | markdownify }}
+            <ul>
+              {{ range $index, $sub := $achievement }}
+                {{ if ne $index 0 }}
+                  <li> {{ $sub | markdownify }} </li>
+                {{ end }}
+              {{ end }}
+            </ul>
+          </li>
+          {{ end }}
           {{- end }}
         </ul>
       </div>

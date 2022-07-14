@@ -15,6 +15,19 @@ $font-color-light: lighten($font-color, 30%);
       url("../fonts/montserrat-v14-latin-regular.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
 
+/* montserrat-600 - latin */
+@font-face {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 600;
+  font-display: fallback;
+
+  src: local("Montserrat Bold"), local("Montserrat-Bold"),
+    url("../fonts/montserrat-v25-latin-600.woff2") format("woff2"),
+    /* Chrome 26+, Opera 23+, Firefox 39+ */
+      url("../fonts/montserrat-v25-latin-600.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
 /* fira-code-regular - latin */
 @font-face {
   font-family: "Fira Code";
@@ -129,7 +142,10 @@ ol ol,
 ol ul,
 ul ol,
 ul ul {
-  margin-bottom: 0;
+  margin-bottom: 1rem;
+  margin-top: 0.5rem;
+  padding-left: 1rem;
+  font-size: 0.95em;
 }
 
 li {
@@ -490,7 +506,7 @@ div.list-container {
 
 .container.resume {
   width: 80%;
-  max-width: 40rem;
+  max-width: 50rem;
   h1.name {
     margin-bottom: 0;
     text-align: right;
@@ -635,5 +651,29 @@ div.list-container {
         font-size: 0.9rem;
       }
     }
+  }
+}
+
+div.main-info {
+  position: relative;
+}
+
+.margin-annotation {
+  top: 0;
+  font-size: 12px;
+}
+
+@media screen and (max-width: 1599px) {
+  .margin-annotation {
+    margin: 1em 0 1em 1em;
+    font-size: 14px;
+  }
+}
+@media screen and (min-width: 1600px) {
+  .margin-annotation {
+    position: absolute;
+    max-width: 12rem;
+    transform: translate(calc(-100.1% - 30px));
+    text-align: right;
   }
 }
