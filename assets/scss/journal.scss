@@ -2,8 +2,8 @@ $font-color: #303030;
 $font-color-toc: rgba($font-color, 0.5);
 $font-color-light: lighten($font-color, 30%);
 
-/* Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+/* Font imports removed to avoid Netlify timeout issues */
+/* IBM Plex Mono will fallback to Fira Code or Source Code Pro */
 
 /* montserrat-regular - latin */
 @font-face {
