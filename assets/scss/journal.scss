@@ -501,6 +501,7 @@ div.list-container {
   div.post-entry {
     display: flex;
     flex-direction: row;
+    align-items: flex-start;
     margin: 2rem 0;
 
     &:hover {
@@ -515,10 +516,12 @@ div.list-container {
       min-width: fit-content;
 
       margin-right: 2rem;
+      padding-top: 0.3125rem; /* Adjust this value to align date with title */
 
       font-family: Fira Code;
       color: $font-color-light;
       font-size: 0.8em;
+      line-height: 1.2;
 
       transition: color 200ms ease-in-out;
     }
@@ -534,6 +537,7 @@ div.list-container {
         &-title {
           color: $font-color;
           text-transform: uppercase;
+          line-height: 1.2;
         }
         &-excerpt {
           font-size: 0.8rem;
