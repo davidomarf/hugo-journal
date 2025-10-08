@@ -272,7 +272,7 @@ a {
   --link-hue: 190; /* Default cyan, will be set by JavaScript */
   box-shadow: 0px -0.125em 0px 0em hsl(var(--link-hue), var(--link-saturation), var(--link-lightness)) inset;
   transition: box-shadow 0.2s cubic-bezier(0.23, 1, 0.32, 1);
-  padding: 0.25em;
+  padding-left: 0.25em;
   color: currentColor;
   text-decoration: none;
   &:hover {
