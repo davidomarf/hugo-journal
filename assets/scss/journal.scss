@@ -86,9 +86,32 @@ hr {
   border-top: 5px dotted #e6e6e6;
 }
 
+figure {
+  margin: 0 -10% 1rem;
+  max-width: 120%;
+  width: 120%;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+@media (max-width: 768px) {
+  figure {
+    margin: 0 calc(50% - 45vw) 1rem;
+    max-width: 90vw;
+    width: 90vw;
+  }
+}
+
 figure .representation {
   display: block;
   margin: 0 0 0.5rem;
+}
+
+figure img {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 figcaption {
