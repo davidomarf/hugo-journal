@@ -165,14 +165,22 @@ blockquote cite {
   text-align: right;
 }
 
+/* Color palette for links - internal vs external */
+:root {
+  --link-saturation: 70%;
+  --link-lightness: 45%;
+  --link-hover-lightness: 85%;
+}
+
 a {
-  box-shadow: 0px -0.125em 0px 0em hsla(190, 84%, 35%, 1) inset;
+  --link-hue: 190; /* Default cyan, will be set by JavaScript */
+  box-shadow: 0px -0.125em 0px 0em hsl(var(--link-hue), var(--link-saturation), var(--link-lightness)) inset;
   transition: box-shadow 0.2s cubic-bezier(0.23, 1, 0.32, 1);
   padding: 0.25em;
   color: currentColor;
   text-decoration: none;
   &:hover {
-    box-shadow: 0px -1.625em 0px hsla(190, 64%, 85%, 1) inset;
+    box-shadow: 0px -1.625em 0px hsl(var(--link-hue), var(--link-saturation), var(--link-hover-lightness)) inset;
   }
 }
 

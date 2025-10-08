@@ -15,12 +15,6 @@
 
     <br>
 
-    {{ if isset .Site.Params "githubusername" -}}
-    <a itemprop="sameAs" href="https://github.com/{{ .Site.Params.githubUsername }}" target="_blank"
-      rel="noopener noreferrer"  
-      title="GitHub">github</a>
-    {{- end }}
-
     {{ if isset .Site.Params "twitterusername" -}}
     <a itemprop="sameAs" href="https://twitter.com/{{ .Site.Params.twitterUsername }}" target="_blank"
       rel="noopener noreferrer"  
@@ -52,6 +46,10 @@
 {{ $p5 := resources.Get "js/p5.js" }}
 {{ $script := $p5 | resources.Minify }}
 <script src="{{ $script.RelPermalink }}"></script>
+
+{{ $linkColors := resources.Get "js/link-colors.js" }}
+{{ $linkColorsScript := $linkColors | resources.Minify }}
+<script src="{{ $linkColorsScript.RelPermalink }}"></script>
 
 </body>
 
