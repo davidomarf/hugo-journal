@@ -21,6 +21,13 @@
     return windowWidth >= MIN_SCREEN_WIDTH && availableSpace >= (SIDENOTE_WIDTH + SIDENOTE_MARGIN);
   }
 
+  // Helper function to decode HTML entities
+  function decodeHtmlEntities(text) {
+    const textarea = document.createElement('textarea');
+    textarea.innerHTML = text;
+    return textarea.value;
+  }
+  
   // Convert footnotes to sidenotes
   function convertToSidenotes() {
     // Find all footnote references - Hugo uses this structure
