@@ -51,6 +51,10 @@
 {{ $linkColorsScript := $linkColors | resources.Minify }}
 <script src="{{ $linkColorsScript.RelPermalink }}"></script>
 
+{{ $sidenotes := resources.Get "js/sidenotes.js" }}
+{{ $sidenotesScript := $sidenotes | resources.Minify }}
+<script src="{{ $sidenotesScript.RelPermalink }}"></script>
+
 </body>
 
 {{ if (isset .Params "katex" ) -}}

@@ -149,6 +149,85 @@ img {
   max-width: 100%;
 }
 
+/* Sidenotes / Margin notes for footnotes */
+.sidenote {
+  position: absolute;
+  right: -280px;
+  width: 250px;
+  margin-top: 0;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  color: $font-color-light;
+  padding: 0.5rem;
+  
+  .sidenote-number {
+    font-weight: 600;
+    color: $font-color;
+    margin-right: 0.25rem;
+  }
+}
+
+/* Mobile: inline footnotes that appear after their paragraph */
+.sidenote-inline {
+  position: static !important;
+  display: block;
+  width: 100%;
+  margin: 0.5rem 0 1.5rem;
+  padding: 0.75rem 1rem;
+  background-color: rgba(0, 0, 0, 0.02);
+  border-left: 3px solid hsla(190, 70%, 45%, 0.3);
+  right: auto;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  color: $font-color-light;
+  
+  .sidenote-number {
+    font-weight: 600;
+    color: $font-color;
+    margin-right: 0.25rem;
+  }
+}
+
+/* Style footnote references when sidenotes are active */
+@media (min-width: 1200px) {
+  body.has-sidenotes {
+    sup.footnote-ref {
+      font-size: 0;
+      
+      a::after {
+        content: "*";
+        font-size: 1rem;
+        color: hsla(190, 70%, 45%, 0.6);
+        vertical-align: super;
+        cursor: default;
+      }
+    }
+  }
+}
+
+/* Ensure proper spacing for content with sidenotes */
+@media (min-width: 1200px) {
+  article.post {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+}
+
+/* Hide footnote markers when inline footnotes are active */
+body.has-inline-footnotes {
+  sup.footnote-ref {
+    font-size: 0;
+    
+    a::after {
+      content: "*";
+      font-size: 0.875rem;
+      color: hsla(190, 70%, 45%, 0.6);
+      vertical-align: super;
+      cursor: default;
+    }
+  }
+}
+
 blockquote {
   padding: 1rem;
   border-left: 5px solid #e5e5e5;
