@@ -93,10 +93,13 @@ h6 {
 hr {
   display: block;
   width: 100%;
-  height: 0;
+  height: 6px;
   margin: 2rem 0;
   border: 0;
-  border-top: 5px dotted #e6e6e6;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 6' preserveAspectRatio='none'%3E%3Cpath d='M 0,3 Q 8,1 16,3.5 T 32,2.5 Q 40,4.5 48,2 T 64,3.5 Q 72,1.5 80,4 T 96,2.5 Q 104,5 112,2 T 128,3.5 Q 136,1 144,4.5 T 160,3 Q 168,5.5 176,2.5 T 192,3 L 200,3' fill='none' stroke='hsla(190, 70%, 45%, 0.4)' stroke-width='1.2' stroke-linecap='round'/%3E%3Cpath d='M 0,2.5 Q 12,4 24,2 T 48,3 Q 60,1 72,3.5 T 96,2.5 Q 108,4.5 120,2 T 144,3 Q 156,1.5 168,4 T 192,2.5 L 200,2.5' fill='none' stroke='hsla(190, 70%, 45%, 0.3)' stroke-width='1.5' stroke-linecap='round'/%3E%3Cpath d='M 0,3.5 Q 5,3 10,4 T 20,3 Q 30,4 40,3.5 T 60,3.5 Q 70,2.5 80,3.5 T 100,3 Q 110,4 120,3.5 T 140,3.5 Q 150,3 160,4 T 180,3.5 Q 190,3 200,3.5' fill='none' stroke='hsla(190, 70%, 45%, 0.25)' stroke-width='0.8' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 figure {
@@ -242,19 +245,73 @@ body.has-inline-footnotes {
 }
 
 blockquote {
-  padding: 1rem;
-  border-left: 5px solid #e5e5e5;
+  padding: 1rem 1rem 1rem 1.5rem;
+  margin: 1.5rem 0;
+  border-left: 4px solid hsla(190, 70%, 45%, 0.3);
+  background-color: rgba(0, 0, 0, 0.02);
   color: #686868;
   font-style: italic;
+  font-size: 1rem;
+  line-height: 1.75;
+  position: relative;
+  
+  /* Add decorative quote marks */
+  &:before {
+    content: "\"";
+    position: absolute;
+    left: -0.5rem;
+    top: -0.5rem;
+    font-size: 3rem;
+    font-family: "IBM Plex Mono", "Fira Code", "Source Code Pro", monospace;
+    color: hsla(190, 70%, 45%, 0.2);
+    font-style: normal;
+  }
 }
 blockquote p {
   margin: 0;
 }
-blockquote cite {
+blockquote p + p {
+  margin-top: 1rem;
+}
+
+/* Style for attribution/author */
+blockquote cite,
+blockquote footer,
+blockquote p:last-child:before {
+  content: "";
+}
+
+blockquote cite,
+blockquote footer {
   display: block;
   margin: 1rem 0 0;
   font-size: 0.875rem;
   text-align: right;
+  font-style: normal;
+  color: hsla(190, 70%, 45%, 0.8);
+  font-family: "IBM Plex Mono", "Fira Code", "Source Code Pro", monospace;
+  
+  &:before {
+    content: "— ";
+    color: hsla(190, 70%, 45%, 0.5);
+  }
+}
+
+/* Special styling for attribution when marked with a class */
+blockquote .attribution,
+blockquote p.attribution,
+blockquote p[data-attribution="true"] {
+  margin-top: 1rem;
+  font-size: 0.875rem;
+  text-align: right;
+  font-style: normal;
+  color: hsla(190, 70%, 45%, 0.8);
+  font-family: "IBM Plex Mono", "Fira Code", "Source Code Pro", monospace;
+  
+  &:before {
+    content: "— ";
+    color: hsla(190, 70%, 45%, 0.5);
+  }
 }
 
 /* Color palette for links - internal vs external */
@@ -318,11 +375,23 @@ pre {
   max-width: 100%;
 }
 
-kbd,
 code {
   margin: 0;
   padding: 0.125rem 0.25rem 0;
   background-color: #f2f2f2;
+}
+
+kbd {
+  margin: 0 0.125rem;
+  padding: 0.25rem 0.5rem;
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
+  border-bottom: 2px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.1), inset 0 0 0 1px #fff;
+  font-size: 0.875em;
+  font-family: "IBM Plex Mono", "Fira Code", "Source Code Pro", monospace;
+  white-space: nowrap;
 }
 
 article,
@@ -405,7 +474,13 @@ h6 {
   margin: 3rem 0 0;
   font-size: 0.8125rem;
   hr {
-    border-top: 1px dotted lightgray;
+    /* Use the same hand-drawn style as main hr */
+    border: 0;
+    height: 6px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 6' preserveAspectRatio='none'%3E%3Cpath d='M 0,3 Q 8,1 16,3.5 T 32,2.5 Q 40,4.5 48,2 T 64,3.5 Q 72,1.5 80,4 T 96,2.5 Q 104,5 112,2 T 128,3.5 Q 136,1 144,4.5 T 160,3 Q 168,5.5 176,2.5 T 192,3 L 200,3' fill='none' stroke='hsla(190, 70%, 45%, 0.4)' stroke-width='1.2' stroke-linecap='round'/%3E%3Cpath d='M 0,2.5 Q 12,4 24,2 T 48,3 Q 60,1 72,3.5 T 96,2.5 Q 108,4.5 120,2 T 144,3 Q 156,1.5 168,4 T 192,2.5 L 200,2.5' fill='none' stroke='hsla(190, 70%, 45%, 0.3)' stroke-width='1.5' stroke-linecap='round'/%3E%3Cpath d='M 0,3.5 Q 5,3 10,4 T 20,3 Q 30,4 40,3.5 T 60,3.5 Q 70,2.5 80,3.5 T 100,3 Q 110,4 120,3.5 T 140,3.5 Q 150,3 160,4 T 180,3.5 Q 190,3 200,3.5' fill='none' stroke='hsla(190, 70%, 45%, 0.25)' stroke-width='0.8' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
   }
 }
 .site-footer [itemprop="sameAs"] + [itemprop="sameAs"] {
@@ -466,10 +541,63 @@ h6 {
   line-height: 1.9em;
 }
 
-.post li,
-a .post ol,
-.post ul {
-  /* inherit font from body */
+/* Drop cap for first paragraph */
+.post-content > p:first-of-type::first-letter,
+.post > p:first-of-type::first-letter {
+  float: left;
+  font-size: 4.5rem;
+  line-height: 3.5rem;
+  padding-right: 0.5rem;
+  padding-top: 0.25rem;
+  margin-bottom: -0.5rem;
+  font-weight: 700;
+  font-family: "IBM Plex Mono", "Fira Code", "Source Code Pro", monospace;
+  color: hsla(190, 70%, 45%, 0.8);
+}
+
+/* Custom list styling */
+.post ul:not(#TableOfContents ul) {
+  list-style: none;
+  padding-left: 1.5rem;
+}
+
+.post ul:not(#TableOfContents ul) li {
+  position: relative;
+  padding-left: 0.5rem;
+  line-height: 1.9em;
+  margin-bottom: 0.5rem;
+}
+
+/* Exclude TOC from custom bullet styling */
+.post ul:not(#TableOfContents ul) li:before {
+  content: "";
+  position: absolute;
+  left: -1.75rem;
+  top: 0.5em;
+  width: 0.75rem;
+  height: 0.75rem;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cg opacity='0.95'%3E%3Cpath d='M 5,10 Q 7,5 10,6 T 15,10 Q 16,15 10,16 T 5,10' fill='none' stroke='hsl(190, 70%, 45%)' stroke-width='3.5' stroke-linecap='round'/%3E%3Cpath d='M 6,11 Q 8,7 11,6 T 16,11 Q 15,16 11,15 T 6,11' fill='none' stroke='hsl(190, 70%, 45%)' stroke-width='3' stroke-linecap='round' opacity='0.8'/%3E%3Cpath d='M 4,9 Q 6,6 9,5 T 15,9 Q 17,13 11,16 T 4,12 Z' fill='none' stroke='hsl(190, 70%, 45%)' stroke-width='2.5' stroke-linecap='round' opacity='0.6'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.post ol {
+  padding-left: 1.5rem;
+}
+
+.post ol li {
+  line-height: 1.9em;
+  margin-bottom: 0.5rem;
+}
+
+/* Nested lists */
+.post ul ul,
+.post ol ol,
+.post ul ol,
+.post ol ul {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .hljs {
@@ -525,21 +653,13 @@ a .post ol,
     max-width: 250px;
     margin-left: 10px;
     transform: translate(-100%);
-    &.is-content-hidden {
-      ul li {
-        color: transparent;
+    ul li {
+      color: $font-color-toc;
+      &.active {
+        color: $font-color !important;
       }
-    }
-
-    &:hover {
-      ul li {
-        color: $font-color-toc;
-        &.active {
-          color: $font-color !important;
-        }
-        &::hover a {
-          text-decoration: underline;
-        }
+      &:hover a {
+        text-decoration: underline;
       }
     }
 
@@ -709,32 +829,107 @@ div.list-container {
     }
   }
   .resume-section {
-    margin-top: 2em;
+    margin-top: 3em;
+    position: relative;
+    
     &-title {
-      margin-bottom: 2rem;
+      margin-bottom: 2.5rem;
+      position: relative;
+      z-index: 1;
 
       display: flex;
       align-items: center;
 
       text-transform: uppercase;
       font-size: 1.2rem;
-      color: $font-color-toc;
+      font-family: "IBM Plex Mono", "Fira Code", "Source Code Pro", monospace;
+      font-weight: 600;
+      color: hsla(190, 70%, 45%, 0.9);
+      letter-spacing: 0.05em;
 
       &::before,
       &::after {
         content: "";
-        border-top: 1px dashed lightgray;
+        height: 3px;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 3' preserveAspectRatio='none'%3E%3Cpath d='M 0,1.5 Q 10,0.5 20,1.5 T 40,1.5 Q 50,2.5 60,1.5 T 80,1.5 Q 90,0.8 100,1.5' fill='none' stroke='hsla(190, 70%, 45%, 0.2)' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
         flex-grow: 1;
       }
 
       &::before {
-        margin: 0 10px 0 0px;
+        margin: 0 15px 0 0px;
         max-width: 50px;
       }
 
       &::after {
-        content: "";
-        margin: 0 0px 0 10px;
+        margin: 0 0px 0 15px;
+      }
+    }
+    
+    /* Timeline for experience section ONLY */
+    &.experience-section {
+      .resume-section-content {
+        position: relative;
+        padding-left: 30px;
+        
+        /* Vertical timeline line */
+        &::before {
+          content: "";
+          position: absolute;
+          left: 7px;
+          top: 8px; /* Start at first item */
+          bottom: 8px; /* End at last item */
+          width: 2px;
+          background: linear-gradient(
+            to bottom,
+            hsla(190, 70%, 45%, 0.6) 0%,
+            hsla(190, 70%, 45%, 0.3) 50%,
+            hsla(190, 70%, 45%, 0.1) 100%
+          );
+        }
+      }
+      
+      .item-container {
+        position: relative;
+        
+        /* Timeline dot */
+        &::before {
+          content: "";
+          position: absolute;
+          left: -28px;
+          top: 0.5rem;
+          width: 12px;
+          height: 12px;
+          background-color: #fff;
+          border: 3px solid hsla(190, 70%, 45%, 0.8);
+          border-radius: 50%;
+          z-index: 1;
+        }
+        
+        /* Current job gets special dot */
+        &:first-child::before {
+          width: 16px;
+          height: 16px;
+          left: -30px;
+          background-color: hsla(190, 70%, 45%, 0.8);
+          box-shadow: 0 0 0 3px hsla(190, 70%, 45%, 0.2);
+        }
+      }
+    }
+    
+    /* Ensure NO timeline for other sections */
+    &:not(.experience-section) {
+      .resume-section-content {
+        padding-left: 0;
+        
+        &::before {
+          display: none;
+        }
+      }
+      
+      .item-container::before {
+        display: none;
       }
     }
 
@@ -796,13 +991,16 @@ div.list-container {
       &-title {
         font-weight: 700;
         span.item-wip {
-          margin-left: 1em;
-          padding: 0.5em 1em;
-          font-weight: normal;
-          font-family: "Fira Code", "Source Code Pro", monospace;
-          font-size: 0.8em;
-          background: #eee;
-          border-radius: 5px;
+          margin-left: 0.75rem;
+          padding: 0.2rem 0.6rem;
+          font-weight: 600;
+          font-family: "IBM Plex Mono", "Fira Code", "Source Code Pro", monospace;
+          font-size: 0.7rem;
+          background: hsla(45, 70%, 50%, 0.15);
+          border: 1px solid hsla(45, 70%, 50%, 0.3);
+          color: hsla(45, 70%, 35%, 1);
+          border-radius: 3px;
+          vertical-align: middle;
         }
       }
       &-company {
@@ -814,12 +1012,30 @@ div.list-container {
       &-stack {
         display: flex;
         flex-wrap: wrap;
-        font-size: 0.8em;
-        font-weight: 700;
-        &-item:not(:first-child) {
-          &::before {
-            content: "·";
-            margin: 0 10px;
+        gap: 0.5rem;
+        margin-top: 0.75rem;
+        
+        &-item {
+          display: inline-block;
+          padding: 0.25rem 0.75rem;
+          font-size: 0.75rem;
+          font-weight: 600;
+          font-family: "IBM Plex Mono", "Fira Code", "Source Code Pro", monospace;
+          background: hsla(190, 70%, 45%, 0.08);
+          border: 1px solid hsla(190, 70%, 45%, 0.2);
+          border-radius: 3px;
+          color: hsla(190, 70%, 35%, 1);
+          transition: all 0.2s ease;
+          
+          &:hover {
+            background: hsla(190, 70%, 45%, 0.15);
+            border-color: hsla(190, 70%, 45%, 0.4);
+            transform: translateY(-1px);
+          }
+          
+          /* Remove the separator dots */
+          &:not(:first-child)::before {
+            display: none;
           }
         }
       }
@@ -853,5 +1069,124 @@ div.main-info {
     max-width: 12rem;
     transform: translate(calc(-100.1% - 30px));
     text-align: right;
+  }
+}
+
+/* Print styles for resume */
+@media print {
+  body {
+    font-size: 11pt;
+    line-height: 1.4;
+    color: #000;
+    background: white;
+  }
+  
+  /* Hide navigation and non-essential elements */
+  .site-nav,
+  .site-footer,
+  #pdf-link,
+  .repo-stat svg,
+  .item-stack-item:hover {
+    display: none !important;
+  }
+  
+  /* Ensure proper page breaks */
+  .resume-section {
+    page-break-inside: avoid;
+  }
+  
+  .item-container {
+    page-break-inside: avoid;
+    page-break-after: auto;
+  }
+  
+  /* Timeline adjustments for print */
+  .resume-section.experience-section {
+    .resume-section-content::before,
+    .item-container::before {
+      display: none; /* Hide timeline elements */
+    }
+    
+    .resume-section-content {
+      padding-left: 0;
+    }
+  }
+  
+  /* Adjust colors for print */
+  .container.resume {
+    width: 100%;
+    max-width: none;
+    
+    h1.name {
+      margin-top: 0;
+      font-size: 24pt;
+    }
+    
+    h2.position {
+      font-size: 14pt;
+      margin-bottom: 1rem;
+    }
+    
+    .excerpt {
+      border: 1px solid #ddd;
+      padding: 1rem;
+    }
+    
+    .resume-section-title {
+      color: #000;
+      font-size: 16pt;
+      
+      &::before,
+      &::after {
+        border-top: 1px solid #000;
+        background-image: none;
+        height: 1px;
+      }
+    }
+    
+    .item-stack-item {
+      background: white !important;
+      border: 1px solid #333 !important;
+      color: #000 !important;
+      print-color-adjust: exact;
+      -webkit-print-color-adjust: exact;
+    }
+    
+    .item-wip {
+      background: white !important;
+      border: 1px solid #666 !important;
+      color: #333 !important;
+    }
+    
+    /* Clean up links for print */
+    a {
+      color: #000;
+      text-decoration: underline;
+      box-shadow: none !important;
+      padding: 0 !important;
+      
+      /* Show URLs for external links */
+      &[href^="http"]:after {
+        content: " (" attr(href) ")";
+        font-size: 0.8em;
+        font-style: italic;
+        word-break: break-all;
+      }
+    }
+    
+    /* Keep internal links clean */
+    a[href^="#"]:after,
+    a[href^="/"]:after {
+      content: "";
+    }
+    
+    /* Optimize spacing */
+    .item-container {
+      margin-bottom: 1.5rem;
+    }
+    
+    .item-meta {
+      font-size: 10pt;
+    }
   }
 }

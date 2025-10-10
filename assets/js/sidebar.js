@@ -44,14 +44,7 @@
             : e.classList.remove("active")
         );
 
-        // This will add the named class only when there is not a lastVisible
-        // item (no one has been reached), and the user hasn't scrolled more than
-        // 200px (so the TOC is visible at the start)
-        if (!(lastVisible < 0 && window.scrollY < 200)) {
-          tableOfContents.classList.add("is-content-hidden");
-        } else {
-          tableOfContents.classList.remove("is-content-hidden");
-        }
+        // Removed is-content-hidden logic - TOC is now always visible
       },
       false
     );
