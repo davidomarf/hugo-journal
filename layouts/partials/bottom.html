@@ -55,6 +55,10 @@
 {{ $sidenotesScript := $sidenotes | resources.Minify }}
 <script src="{{ $sidenotesScript.RelPermalink }}"></script>
 
+{{ $themeToggle := resources.Get "js/theme-toggle.js" }}
+{{ $themeToggleScript := $themeToggle | resources.Minify }}
+<script src="{{ $themeToggleScript.RelPermalink }}"></script>
+
 </body>
 
 {{ if (isset .Params "katex" ) -}}

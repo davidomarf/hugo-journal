@@ -2,6 +2,99 @@ $font-color: #303030;
 $font-color-toc: rgba($font-color, 0.5);
 $font-color-light: lighten($font-color, 30%);
 
+/* CSS Variables for theming */
+:root {
+  /* Light theme (default) */
+  --bg-color: #ffffff;
+  --text-color: #303030;
+  --text-color-light: #787878;
+  --text-color-toc: rgba(48, 48, 48, 0.5);
+  --link-color: hsla(190, 70%, 45%, 1);
+  --link-hover-color: hsla(190, 70%, 35%, 1);
+  --link-hover-bg: hsla(190, 70%, 85%, 1); /* Light hover background */
+  --code-bg: #f2f2f2;
+  --border-color: #e6e6e6;
+  --blockquote-bg: rgba(0, 0, 0, 0.02);
+  --blockquote-border: hsla(190, 70%, 45%, 0.3);
+  --blockquote-color: #686868;
+  --hr-color: lightgray;
+  --selection-bg: hsla(190, 70%, 45%, 0.2);
+  --selection-color: inherit;
+  --hover-bg: transparent; /* No hover background in light mode */
+  
+  /* Badge colors */
+  --badge-bg: hsla(190, 70%, 45%, 0.08);
+  --badge-border: hsla(190, 70%, 45%, 0.2);
+  --badge-color: hsla(190, 70%, 35%, 1);
+  --badge-hover-bg: hsla(190, 70%, 45%, 0.15);
+  --badge-hover-border: hsla(190, 70%, 45%, 0.4);
+  
+  /* Shadows */
+  --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Dark theme */
+[data-theme="dark"] {
+  --bg-color: #1a1a1a;
+  --text-color: #e0e0e0;
+  --text-color-light: #909090; /* Much dimmer for stronger contrast */
+  --text-color-toc: rgba(224, 224, 224, 0.7); /* Higher opacity for better contrast */
+  --link-color: hsla(190, 70%, 60%, 1);
+  --link-hover-color: hsla(190, 70%, 70%, 1);
+  --link-hover-bg: hsla(190, 70%, 20%, 0.5); /* Darker hover background */
+  --code-bg: #2a2a2a;
+  --border-color: #3a3a3a;
+  --blockquote-bg: rgba(255, 255, 255, 0.02);
+  --blockquote-border: hsla(190, 70%, 60%, 0.3);
+  --blockquote-color: #b0b0b0;
+  --hr-color: #3a3a3a;
+  --selection-bg: hsla(190, 70%, 60%, 0.3);
+  --selection-color: #ffffff;
+  --hover-bg: rgba(255, 255, 255, 0.05); /* Subtle highlight in dark mode */
+  
+  /* Badge colors */
+  --badge-bg: hsla(190, 70%, 60%, 0.15);
+  --badge-border: hsla(190, 70%, 60%, 0.3);
+  --badge-color: hsla(190, 70%, 80%, 1);
+  --badge-hover-bg: hsla(190, 70%, 60%, 0.25);
+  --badge-hover-border: hsla(190, 70%, 60%, 0.5);
+  
+  /* Shadows */
+  --shadow-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Auto dark theme based on system preference */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg-color: #1a1a1a;
+    --text-color: #e0e0e0;
+    --text-color-light: #909090; /* Much dimmer for stronger contrast */
+    --text-color-toc: rgba(224, 224, 224, 0.7); /* Higher opacity for better contrast */
+    --link-color: hsla(190, 70%, 60%, 1);
+    --link-hover-color: hsla(190, 70%, 70%, 1);
+    --link-hover-bg: hsla(190, 70%, 20%, 0.5); /* Darker hover background */
+    --code-bg: #2a2a2a;
+    --border-color: #3a3a3a;
+    --blockquote-bg: rgba(255, 255, 255, 0.02);
+    --blockquote-border: hsla(190, 70%, 60%, 0.3);
+    --blockquote-color: #b0b0b0;
+    --hr-color: #3a3a3a;
+    --selection-bg: hsla(190, 70%, 60%, 0.3);
+    --selection-color: #ffffff;
+    --hover-bg: rgba(255, 255, 255, 0.05); /* Subtle highlight in dark mode */
+    
+    /* Badge colors */
+    --badge-bg: hsla(190, 70%, 60%, 0.15);
+    --badge-border: hsla(190, 70%, 60%, 0.3);
+    --badge-color: hsla(190, 70%, 80%, 1);
+    --badge-hover-bg: hsla(190, 70%, 60%, 0.25);
+    --badge-hover-border: hsla(190, 70%, 60%, 0.5);
+    
+    /* Shadows */
+    --shadow-color: rgba(0, 0, 0, 0.5);
+  }
+}
+
 /* Font imports removed to avoid Netlify timeout issues */
 /* IBM Plex Mono will fallback to Fira Code or Source Code Pro */
 
@@ -51,11 +144,12 @@ $font-color-light: lighten($font-color, 30%);
 }
 
 html {
-  background-color: #fbfbfb;
-  color: $font-color;
+  background-color: var(--bg-color);
+  color: var(--text-color);
   font-family: "Montserrat", sans-serif;
   font-size: 1.0625rem;
   scroll-behavior: smooth;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 @media screen and (min-width: 800px) {
   html {
@@ -65,6 +159,19 @@ html {
 
 body {
   line-height: 1.6;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+/* Selection colors */
+::selection {
+  background: var(--selection-bg);
+  color: var(--selection-color);
+}
+
+::-moz-selection {
+  background: var(--selection-bg);
+  color: var(--selection-color);
 }
 
 html,
@@ -173,7 +280,7 @@ img {
   margin-top: 0;
   font-size: 0.875rem;
   line-height: 1.4;
-  color: $font-color-light;
+  color: var(--text-color-light);
   padding: 0.5rem;
   
   .sidenote-number {
@@ -195,7 +302,7 @@ img {
   right: auto;
   font-size: 0.875rem;
   line-height: 1.4;
-  color: $font-color-light;
+  color: var(--text-color-light);
   
   .sidenote-number {
     font-weight: 600;
@@ -247,9 +354,9 @@ body.has-inline-footnotes {
 blockquote {
   padding: 1rem 1rem 1rem 1.5rem;
   margin: 1.5rem 0;
-  border-left: 4px solid hsla(190, 70%, 45%, 0.3);
-  background-color: rgba(0, 0, 0, 0.02);
-  color: #686868;
+  border-left: 4px solid var(--blockquote-border);
+  background-color: var(--blockquote-bg);
+  color: var(--blockquote-color);
   font-style: italic;
   font-size: 1rem;
   line-height: 1.75;
@@ -318,10 +425,21 @@ blockquote p[data-attribution="true"] {
 :root {
   --link-saturation: 70%;
   --link-lightness: 45%;
-  --link-hover-lightness: 85%;
+  --link-hover-lightness: 85%; /* Light background on hover in light theme */
   
   /* Post title decorative line - set to 1 to enable, 0 to disable */
   --show-title-line: 0; /* Currently disabled - change to 1 to show the line after post titles on hover */
+}
+
+/* Dark theme link hover adjustment */
+[data-theme="dark"] {
+  --link-hover-lightness: 25%; /* Dark background on hover in dark theme */
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --link-hover-lightness: 25%; /* Dark background on hover in dark theme */
+  }
 }
 
 a {
@@ -332,6 +450,7 @@ a {
   color: currentColor;
   text-decoration: none;
   &:hover {
+    /* Use the link's hue for hover background, adjusting lightness based on theme */
     box-shadow: 0px -1.625em 0px hsl(var(--link-hue), var(--link-saturation), var(--link-hover-lightness)) inset;
   }
 }
@@ -378,7 +497,8 @@ pre {
 code {
   margin: 0;
   padding: 0.125rem 0.25rem 0;
-  background-color: #f2f2f2;
+  background-color: var(--code-bg);
+  color: var(--text-color);
 }
 
 kbd {
@@ -392,6 +512,15 @@ kbd {
   font-size: 0.875em;
   font-family: "IBM Plex Mono", "Fira Code", "Source Code Pro", monospace;
   white-space: nowrap;
+  
+  // Dark theme styles
+  [data-theme="dark"] & {
+    background-color: #2a2a2a;
+    border: 1px solid #444;
+    border-bottom: 2px solid #555;
+    box-shadow: 0 1px 0 rgba(0,0,0,0.3), inset 0 0 0 1px #3a3a3a;
+    color: #e0e0e0;
+  }
 }
 
 article,
@@ -453,8 +582,19 @@ h6 {
   margin-bottom: 0.5rem;
 }
 
+// Add top spacing to avoid theme toggler overlap
+.site-nav,
+.site-header {
+  padding-top: 12rem;
+}
+
+.site-header {
+  position: relative;
+}
+
 .site-nav {
   display: flex;
+  position: relative; // For absolute positioning of theme toggle on mobile
   a {
     &#pdf-link {
       margin-left: auto;
@@ -472,6 +612,7 @@ h6 {
 }
 .site-footer {
   margin: 3rem 0 0;
+  padding-bottom: 12rem; // Match top padding
   font-size: 0.8125rem;
   hr {
     /* Use the same hand-drawn style as main hr */
@@ -654,9 +795,9 @@ h6 {
     margin-left: 10px;
     transform: translate(-100%);
     ul li {
-      color: $font-color-toc;
+      color: var(--text-color-toc);
       &.active {
-        color: $font-color !important;
+        color: var(--text-color) !important;
       }
       &:hover a {
         text-decoration: underline;
@@ -686,7 +827,7 @@ h6 {
         font-family: "IBM Plex Mono", "Fira Code", "Source Code Pro", monospace;
         font-size: 14px;
 
-        color: $font-color-toc;
+        color: var(--text-color-toc);
         transition: color 350ms ease-in-out;
 
         a {
@@ -702,17 +843,17 @@ h6 {
 
           text-align: right;
 
-          color: $font-color-toc;
+          color: var(--text-color-toc);
           transition: color 350ms ease-in-out;
         }
 
         &:hover,
         &:hover::before {
-          color: $font-color;
+          color: var(--text-color);
         }
 
         &.active::before {
-          color: $font-color;
+          color: var(--text-color);
         }
       }
     }
@@ -740,7 +881,7 @@ div.list-container {
       }
       
       .post-excerpt {
-        color: $font-color !important;
+        color: var(--text-color) !important; /* Brighter in dark mode, darker in light mode */
       }
     }
 
@@ -753,7 +894,7 @@ div.list-container {
       padding-top: 0.3125rem; /* Adjust this value to align date with title */
 
       font-family: "IBM Plex Mono", "Fira Code", monospace;
-      color: $font-color-light;
+      color: var(--text-color-light);
       font-size: 0.8em;
       line-height: 1.2;
 
@@ -762,14 +903,14 @@ div.list-container {
     &-details {
       display: flex;
       flex-direction: column;
-      color: $font-color-light;
+      color: var(--text-color-light);
       a {
         display: block;
         box-shadow: none;
       }
       .post {
         &-title {
-          color: $font-color-light;
+          color: var(--text-color-light);
           text-transform: uppercase;
           line-height: 1.2;
           font-family: "IBM Plex Mono", "Fira Code", "Source Code Pro", monospace;
@@ -791,6 +932,7 @@ div.list-container {
         }
         &-excerpt {
           font-size: 0.8rem;
+          color: var(--text-color-light); /* Dimmer by default */
           transition: color 200ms ease-in-out;
           &.arrow {
             display: none;
@@ -953,7 +1095,7 @@ div.list-container {
         text-align: right;
         font-size: 0.75em;
         font-style: italic;
-        color: $font-color-light;
+        color: var(--text-color-light);
       }
       &-repo {
         display: flex;
@@ -963,7 +1105,7 @@ div.list-container {
         align-items: center;
 
         font-size: 0.75em;
-        color: $font-color-light;
+        color: var(--text-color-light);
 
         .repo-stat {
           display: flex;
@@ -1007,7 +1149,7 @@ div.list-container {
         text-transform: uppercase;
         font-size: 0.8em;
         font-weight: 700;
-        color: $font-color-light;
+        color: var(--text-color-light);
       }
       &-stack {
         display: flex;
@@ -1021,15 +1163,15 @@ div.list-container {
           font-size: 0.75rem;
           font-weight: 600;
           font-family: "IBM Plex Mono", "Fira Code", "Source Code Pro", monospace;
-          background: hsla(190, 70%, 45%, 0.08);
-          border: 1px solid hsla(190, 70%, 45%, 0.2);
+          background: var(--badge-bg);
+          border: 1px solid var(--badge-border);
           border-radius: 3px;
-          color: hsla(190, 70%, 35%, 1);
+          color: var(--badge-color);
           transition: all 0.2s ease;
           
           &:hover {
-            background: hsla(190, 70%, 45%, 0.15);
-            border-color: hsla(190, 70%, 45%, 0.4);
+            background: var(--badge-hover-bg);
+            border-color: var(--badge-hover-border);
             transform: translateY(-1px);
           }
           
@@ -1069,6 +1211,73 @@ div.main-info {
     max-width: 12rem;
     transform: translate(calc(-100.1% - 30px));
     text-align: right;
+  }
+}
+
+// Theme toggle button styles
+.theme-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  color: var(--text-color);
+  font-family: inherit;
+  font-size: 0.875rem;
+  transition: opacity 0.2s ease;
+  text-align: right;
+  line-height: 1.2;
+  opacity: 0.7;
+  
+  &:hover {
+    opacity: 1;
+  }
+  
+  strong {
+    font-weight: 700;
+  }
+  
+  span {
+    display: block;
+    
+    // Style for the on/off word
+    &:nth-child(2) {
+      position: relative;
+      padding: 2px 0;
+      margin: -2px 0;
+      display: inline-block; // Make it shrink to content
+      
+      flex-grow: 0;
+
+      strong {
+        position: relative;
+        z-index: 2;
+        color: var(--bg-color);
+        padding: 0 2px;
+      }
+      
+      &::before {
+        content: '';
+        position: absolute;
+        right: -100vw; // Extend far beyond the right edge
+        left: -2px; // Small padding before text
+        top: 0;
+        bottom: 0;
+        background-color: var(--text-color);
+        z-index: 1;
+      }
+    }
+  }
+  
+  // Default positioning - always top right
+  position: fixed;
+  top: 2rem; // Near the top of viewport
+  right: 16px;
+  z-index: 100;
+  
+  // On mobile, absolute positioning
+  @media screen and (max-width: 800px) {
+    position: absolute;
+    top: 1rem; // Slightly less space on mobile
   }
 }
 

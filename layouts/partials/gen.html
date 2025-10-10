@@ -11,20 +11,31 @@
   let accentProbability = 0.1;
   let circleProbability = 0.5;
   let skipProbability = 0.5;
+  let proximityEffect = 0.5; // New variable for proximity-based effects
   let nextSeed = 99;
 
-  const colors = [[190, 84, 55], "black"];
+  let colors = [[190, 84, 55], "black"];
 
   let canvasElement;
+  
+  // Update colors based on theme
+  function updateColors() {
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark' || 
+                  (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches && 
+                   !document.documentElement.getAttribute('data-theme'));
+    
+    colors = isDark ? [[190, 84, 65], [0, 0, 90]] : [[190, 84, 55], "black"];
+  }
 
   function draw() {
     clear();
+    updateColors();
     randomSeed(nextSeed);
     divide(0, 0, width);
   }
 
   function setup() {
-    createCanvas(160, 160).parent("p5-container");
+    createCanvas(190, 190).parent("p5-container");
     canvasElement = document
       .getElementById("p5-container")
       .getElementsByTagName("canvas")[0];
@@ -32,10 +43,11 @@
     noStroke();
     noLoop();
     rectMode(CENTER);
+    updateColors(); // Initial color update
   }
 
   function fillSquare(x, y, size, i = 0) {
-    const r = size * 1;
+    const r = size * 1.01; // Slightly larger to prevent gaps
     const randomNumbers = [...Array(10)].map((e) => random());
 
     const secondRandom = random(colors);
@@ -45,16 +57,42 @@
       randomNumbers[0] < accentProbability ? [20, 84, 80] : secondRandom;
     fill(color);
 
-    if (randomNumbers[8] > skipProbability) {
-      noFill();
-    }
+    // Remove the skip probability check - always draw something
+    
     if (randomNumbers[6] > 0.8 && i > 0) {
       return;
     }
+    
+    // Use proximity effect to influence pattern complexity
     if (randomNumbers[1] > 0.5 && i <= 2) {
       divide(x, y, size, i + 1);
     } else if (randomNumbers[2] > circleProbability) {
-      rect(x + r / 2, y + r / 2, r, r);
+      // Use proximity to affect shape rendering
+      if (randomNumbers[3] < proximityEffect) {
+        // Draw quarter circles with random orientation
+        push();
+        fill(color);
+        const orientation = floor(randomNumbers[4] * 4); // 0-3 for 4 orientations
+        
+        // Draw quarter circle based on orientation
+        switch(orientation) {
+          case 0: // Top-left
+            arc(x, y, r * 2, r * 2, 0, HALF_PI);
+            break;
+          case 1: // Top-right
+            arc(x + r, y, r * 2, r * 2, HALF_PI, PI);
+            break;
+          case 2: // Bottom-right
+            arc(x + r, y + r, r * 2, r * 2, PI, PI + HALF_PI);
+            break;
+          case 3: // Bottom-left
+            arc(x, y + r, r * 2, r * 2, PI + HALF_PI, TWO_PI);
+            break;
+        }
+        pop();
+      } else {
+        rect(x + r / 2, y + r / 2, r, r);
+      }
     } else {
       circle(x + r / 2, y + r / 2, r, r);
     }
@@ -82,7 +120,6 @@
   function mouseMoved({ clientX, clientY }) {
     const px = clientX / vw;
     const py = clientY / vh;
-    skipProbability = 0.1 + 0.3 * px;
     circleProbability = py;
 
     const { left, right, bottom, top } = canvasElement.getBoundingClientRect();
@@ -90,7 +127,9 @@
     const center = { x: (left + right) / 2, y: (bottom + top) / 2 };
     const dist = getDistance(center.x, center.y, clientX, clientY);
     const maxLength = 0.8 * getDistance(center.x, center.y, vw, center.y);
-    skipProbability = Math.max(0, (dist - 75) / maxLength);
+    
+    // Use proximity to control the new pattern effect (0 = far, 1 = close)
+    proximityEffect = Math.max(0, Math.min(1, 1 - (dist / maxLength)));
     draw();
   }
 
@@ -99,5 +138,27 @@
     nextSeed = random(0, 1000000);
     draw();
   }
+  
+  // Listen for theme changes
+  const observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+      if (mutation.type === 'attributes' && mutation.attributeName === 'data-theme') {
+        draw();
+      }
+    });
+  });
+  
+  // Start observing the document element for attribute changes
+  observer.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ['data-theme']
+  });
+  
+  // Also listen for system theme changes
+  if (window.matchMedia) {
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+      draw();
+    });
+  }
 </script>
-<div id="p5-container"></div>
+<div id="p5-container" style="width: 190px; height: 190px;"></div>
