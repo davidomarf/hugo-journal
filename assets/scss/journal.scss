@@ -1167,7 +1167,7 @@ div.list-container {
           top: 0.5rem;
           width: 12px;
           height: 12px;
-          background-color: #fff;
+          background-color: var(--bg-color);
           border: 3px solid hsla(190, 70%, 45%, 0.8);
           border-radius: 50%;
           z-index: 1;
@@ -1307,7 +1307,7 @@ div.list-container {
       }
       &-details {
         margin-top: 1rem;
-        color: $font-color;
+        color: var(--text-color);
         font-size: 0.9rem;
       }
     }
