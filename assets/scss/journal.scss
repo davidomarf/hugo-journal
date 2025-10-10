@@ -18,7 +18,7 @@ $font-color-light: lighten($font-color, 30%);
   --blockquote-border: hsla(190, 70%, 45%, 0.3);
   --blockquote-color: #686868;
   --hr-color: lightgray;
-  --selection-bg: hsla(190, 70%, 45%, 0.2);
+  --selection-bg: #d8eef4; /* Lighter cyan selection */
   --selection-color: inherit;
   --hover-bg: transparent; /* No hover background in light mode */
   
@@ -48,7 +48,7 @@ $font-color-light: lighten($font-color, 30%);
   --blockquote-border: hsla(190, 70%, 60%, 0.3);
   --blockquote-color: #b0b0b0;
   --hr-color: #3a3a3a;
-  --selection-bg: hsla(190, 70%, 60%, 0.3);
+  --selection-bg: #2d4956; /* Darker cyan selection */
   --selection-color: #ffffff;
   --hover-bg: rgba(255, 255, 255, 0.05); /* Subtle highlight in dark mode */
   
@@ -79,7 +79,7 @@ $font-color-light: lighten($font-color, 30%);
     --blockquote-border: hsla(190, 70%, 60%, 0.3);
     --blockquote-color: #b0b0b0;
     --hr-color: #3a3a3a;
-    --selection-bg: hsla(190, 70%, 60%, 0.3);
+    --selection-bg: #2d4956; /* Darker cyan selection */
     --selection-color: #ffffff;
     --hover-bg: rgba(255, 255, 255, 0.05); /* Subtle highlight in dark mode */
     
@@ -659,24 +659,148 @@ h6 {
   }
 }
 
-.post .post-header {
-  margin-bottom: 3rem;
-  .project-meta-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    p {
-      padding-right: 3em;
-    }
+// Project-specific meta container (for project posts)
+.post .project-meta-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  p {
+    padding-right: 3em;
   }
 }
 
-.post .post-date {
-  display: block;
-  margin: 0 0 1rem;
-  text-align: right;
-  white-space: nowrap;
+// Elegant post header - only on single post pages
+.post .post-header {
+  text-align: center;
+  padding: 2rem 0 3rem;
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 3rem;
+  
+  // Break out of content width on larger screens
+  @media screen and (min-width: 800px) {
+    margin-left: -4rem;
+    margin-right: -4rem;
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+  
+  @media screen and (min-width: 1200px) {
+    margin-left: -6rem;
+    margin-right: -6rem;
+    padding-left: 6rem;
+    padding-right: 6rem;
+  }
+  
+  .post-title {
+    font-size: 2.25rem;
+    font-weight: 600;
+    line-height: 1.15;
+    margin: 0 0 1rem 0;  // Reduced from 1.5rem
+    letter-spacing: -0.02em;
+    color: var(--text-color);
+    
+    // Subtle color variation
+    opacity: 0.95;
+    
+    // Slightly larger on wide screens
+    @media screen and (min-width: 1200px) {
+      font-size: 2.5rem;
+    }
+    
+    @media screen and (max-width: 800px) {
+      font-size: 1.875rem;
+    }
+  }
+  
+  .post-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;  // Reduced from 0.75rem
+    
+    .post-date {
+      font-size: 0.875rem;
+      font-weight: 400;
+      letter-spacing: 0.05em;
+      color: var(--meta-color);
+      opacity: 0.7;
+      
+      // Format: "Published on January 02, 2006"
+      &::before {
+        content: "Published on ";
+        font-style: italic;
+      }
+    }
+    
+    // Reading time estimate (if you want to add it)
+    .reading-time {
+      font-size: 0.8125rem;
+      color: var(--meta-color);
+      opacity: 0.6;
+      
+      &::before {
+        content: "· ";
+      }
+      
+      &::after {
+        content: " min read";
+      }
+    }
+    
+    // Tags or categories
+    .post-tags {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+      
+      .tag {
+        font-size: 0.75rem;
+        padding: 0.125rem 0.5rem;
+        background: var(--code-bg);
+        color: var(--meta-color);
+        border-radius: 0.125rem;
+        text-decoration: none;
+        opacity: 0.8;
+        
+        &:hover {
+          opacity: 1;
+          color: hsl(190, 70%, 45%);
+        }
+      }
+    }
+  }
+  
+  // Post excerpt/description
+  .post-excerpt {
+    margin-top: 1rem;  // Reduced from 1.5rem
+    font-size: 1.125rem;
+    line-height: 1.6;
+    color: var(--meta-color);
+    font-style: italic;
+    max-width: 40rem;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 0.85;
+  }
 }
+
+// Alternative minimalist style (uncomment to use)
+// .post .post-header {
+//   padding: 0 0 2rem;
+//   
+//   .post-title {
+//     font-size: 2.5rem;
+//     font-weight: 300;
+//     margin: 0 0 0.5rem 0;
+//     letter-spacing: -0.02em;
+//   }
+//   
+//   .post-date {
+//     font-size: 0.875rem;
+//     color: var(--meta-color);
+//     opacity: 0.6;
+//   }
+// }
 
 .post p {
   line-height: 1.9em;

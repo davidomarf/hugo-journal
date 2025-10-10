@@ -369,3 +369,162 @@
 .chroma .w {
   color: #bbbbbb;
 }
+
+/* Dark theme overrides - preserving original style */
+[data-theme="dark"] .chroma {
+  background-color: #212121;
+}
+
+[data-theme="dark"] .chroma .err {
+  color: #ff6b6b;
+  background-color: rgba(255, 107, 107, 0.1);
+}
+
+/* Comments - light gray (originally #999988) */
+[data-theme="dark"] .chroma .c,
+[data-theme="dark"] .chroma .ch,
+[data-theme="dark"] .chroma .cm,
+[data-theme="dark"] .chroma .c1,
+[data-theme="dark"] .chroma .cs,
+[data-theme="dark"] .chroma .cp,
+[data-theme="dark"] .chroma .cpf {
+  color: #8b8b8b;
+  font-style: italic;
+}
+
+/* Keywords - light version of black/bold */
+[data-theme="dark"] .chroma .k,
+[data-theme="dark"] .chroma .kc,
+[data-theme="dark"] .chroma .kd,
+[data-theme="dark"] .chroma .kn,
+[data-theme="dark"] .chroma .kp,
+[data-theme="dark"] .chroma .kr {
+  color: #e0e0e0;
+  font-weight: bold;
+}
+
+/* Keyword Type - light blue (originally #445588) */
+[data-theme="dark"] .chroma .kt {
+  color: #7ba7d9;
+  font-weight: bold;
+}
+
+/* Strings - light red (originally #dd1144) */
+[data-theme="dark"] .chroma .s,
+[data-theme="dark"] .chroma .sa,
+[data-theme="dark"] .chroma .sb,
+[data-theme="dark"] .chroma .sc,
+[data-theme="dark"] .chroma .dl,
+[data-theme="dark"] .chroma .sd,
+[data-theme="dark"] .chroma .s2,
+[data-theme="dark"] .chroma .se,
+[data-theme="dark"] .chroma .sh,
+[data-theme="dark"] .chroma .si,
+[data-theme="dark"] .chroma .sx,
+[data-theme="dark"] .chroma .s1 {
+  color: #e67e8b;
+}
+
+/* String Regex - light green (originally #009926) */
+[data-theme="dark"] .chroma .sr {
+  color: #5fbf5f;
+}
+
+/* String Symbol - light purple (originally #990073) */
+[data-theme="dark"] .chroma .ss {
+  color: #d680b8;
+}
+
+/* Numbers - light cyan (originally #009999) */
+[data-theme="dark"] .chroma .m,
+[data-theme="dark"] .chroma .mb,
+[data-theme="dark"] .chroma .mf,
+[data-theme="dark"] .chroma .mh,
+[data-theme="dark"] .chroma .mi,
+[data-theme="dark"] .chroma .il,
+[data-theme="dark"] .chroma .mo,
+[data-theme="dark"] .chroma .mx {
+  color: #4dd4d4;
+}
+
+/* Name Attribute - light teal (originally #008080) */
+[data-theme="dark"] .chroma .na,
+[data-theme="dark"] .chroma .no {
+  color: #4db8b8;
+}
+
+/* Name Builtin - light blue (originally #0086b3) */
+[data-theme="dark"] .chroma .nb {
+  color: #4db3e6;
+}
+
+/* Name Class/Type - light blue (originally #445588) */
+[data-theme="dark"] .chroma .nc,
+[data-theme="dark"] .chroma .nn {
+  color: #7ba7d9;
+  font-weight: bold;
+}
+
+/* Name Function/Exception - light red (originally #990000) */
+[data-theme="dark"] .chroma .nf,
+[data-theme="dark"] .chroma .ne,
+[data-theme="dark"] .chroma .nl {
+  color: #e65c5c;
+  font-weight: bold;
+}
+
+/* Name Decorator - light teal (originally #3c5d5d) */
+[data-theme="dark"] .chroma .nd {
+  color: #6b9999;
+  font-weight: bold;
+}
+
+/* Name Entity - light purple (originally #800080) */
+[data-theme="dark"] .chroma .ni {
+  color: #d966d9;
+}
+
+/* Operator */
+[data-theme="dark"] .chroma .o,
+[data-theme="dark"] .chroma .ow {
+  color: #e0e0e0;
+  font-weight: bold;
+}
+
+/* Builtin Pseudo - light gray (originally #999999) */
+[data-theme="dark"] .chroma .bp {
+  color: #b3b3b3;
+}
+
+/* Line numbers */
+[data-theme="dark"] .chroma .ln,
+[data-theme="dark"] .chroma .lnt {
+  color: #808080;
+}
+
+/* Generic styles */
+[data-theme="dark"] .chroma .ge {
+  font-style: italic;
+}
+
+[data-theme="dark"] .chroma .gs {
+  font-weight: bold;
+}
+
+/* Text/Other */
+[data-theme="dark"] .chroma .nx,
+[data-theme="dark"] .chroma .py,
+[data-theme="dark"] .chroma .nt,
+[data-theme="dark"] .chroma .nv {
+  color: #e0e0e0;
+}
+
+/* Text whitespace */
+[data-theme="dark"] .chroma .w {
+  color: #e0e0e0;
+}
+
+/* Line Highlight */
+[data-theme="dark"] .chroma .hl {
+  background-color: #292929;
+}
